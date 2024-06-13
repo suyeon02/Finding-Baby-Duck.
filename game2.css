@@ -1,0 +1,255 @@
+@font-face {
+    font-family: 'BMDOHYEON';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#wrap2 { /*게임 전체적인 화면 조정*/
+    position: relative;
+    width:100%;
+    height:100vh;
+    background-image: url(./img/다람쥐\ 화면.png);
+    background-size: cover;
+    background-position: center;
+    overflow:hidden;
+    display: none;
+    
+}
+.game2{
+    display: none;
+    font-family: 'BMDOHYEON', sans-serif;
+}
+
+.outer-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .outer-container {
+        position: relative;
+            display: flex;
+            justify-content: space-between; 
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        
+        .container4{
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        padding: 10px;
+        padding-left: 40px;
+        text-align: center;
+        position: absolute;
+           
+        }
+
+        .container2 {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            width: 100%;
+        
+        }
+
+    .left-text,.count2 {
+        text-align: left;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+
+    .time2,.count2 {
+        font-weight: bold;
+        font-family: 'BMDOHYEON', sans-serif;
+    }
+
+    .time2 {
+        font-size: 4rem;
+        padding: 10px 0;
+    }
+
+    .count2 {
+        font-size: 4rem;
+        padding: 10px 0;
+        text-align: left;
+    }
+
+section.active { 
+    display: flex;
+}
+
+#game_canvas2 { 
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border: solid 2px black;
+    
+}
+
+.gamestart2 { /*게임 시작 화면*/
+background-color: #000000a1;
+color: white;
+height:100vh;
+left: 0;
+padding: 65px 0;
+position: absolute;
+text-align: center;
+top: 0;
+width: 100%;
+}
+
+.starttime2{ /*첫 시작 카운트*/
+    position: relative;
+    display: flex;
+    justify-content:center;
+    font-weight: bold;
+    font-size:7rem;
+    transform:translate(-50%, -50%);
+    top:18%;
+    left:50%;
+}
+
+.startgide3{ /*첫 시작 카운트*/
+    position: relative;
+    display: flex;
+    justify-content:center;
+    font-family: 'BMDOHYEON', sans-serif;
+    font-size:1.5rem;
+    transform:translate(-50%, -50%);
+    top:42%;
+    left:50%;
+}
+.box27{ 
+    width: 330px;
+    height: 230px;
+    background-image: url(./img/다람쥐\ 가이드.png);
+    background-size: cover; 
+    background-position: center; 
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.gameover2 {
+background-color: #000000a1;
+color: white;
+height:100vh;
+left: 0;
+padding: 65px 0;
+position: absolute;
+text-align: center;
+top: 0;
+width: 100%;
+display: none;
+
+}
+
+.gameclear2 { 
+background-color: #000000a1;
+color: white;
+height:100vh;
+left: 0;
+padding: 65px 0;
+position: absolute;
+text-align: center;
+top: 0;
+width: 100%;
+display: none;
+
+}
+
+.gameover_inner2 {
+    position:relative;
+    top:42%;
+    left:50%;
+    width:600px;
+    height:500px;
+    background-image: url(./img/스토리\ 배경.png);
+    background-size: cover; 
+    background-position: center;
+    transform:translate(-50%, -50%);
+    border-radius:30px;
+    padding: 30px 0 30px 0;
+    opacity: 1;
+}
+
+.gameover_title2 {
+    position: absolute;
+    font-size: 2.5rem;
+    transform: translateX(80%);
+    font-weight: bold;
+    color: rgb(23, 22, 22);
+    top: 23%;
+    font-family: 'BMDOHYEON', sans-serif;
+}
+
+.gameclear_title2 { /*타임아웃 메시지*/
+    position: absolute;
+    font-size: 2.5rem;
+    transform: translateX(65%);
+    font-weight: bold;
+    color: rgb(23, 22, 22);
+    top: 25%;
+    font-family: 'BMDOHYEON', sans-serif;
+}
+
+.box4{ 
+    width: 180px;
+    height: 180px;
+    background-image: url(./img/도토리2.png);
+    background-size: cover; 
+    background-position: center; 
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box20{ 
+    width: 150px;
+    height: 200px;
+    background-image: url(./img/다람쥐\ 아웃.png);
+    background-size: cover; 
+    background-position: center; 
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#box5{ 
+    width: 600px;
+    height: 600px;
+    background-image: url(./img/도토리1.png);
+    background-size: cover; 
+    background-position: center; 
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+.b2{
+    margin-left: -75px;
+}
+
+button:hover {
+    background-color: #858585;
+}

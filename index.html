@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Baby Duck</title>
+
+
+    <link rel="stylesheet" href="./game1.css">
+    <link rel="stylesheet" href="./game2.css">
+    <link rel="stylesheet" href="./game3.css">
+
+    <style>
+
+    @font-face {
+        font-family: 'BMDOHYEON';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background-color: #f0f0f0;
+        overflow: hidden;
+    }
+
+    .image-bg {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: none;
+    }
+
+    .image-bg img {
+        cursor: grab; 
+        position: absolute;
+        user-select: none;
+        width: 265%; 
+        height: auto;
+       
+    }
+
+
+    .animal-cat{
+        position: absolute;
+        top: 3050px;
+        left: 1300px; 
+        width: 120px;
+    }
+
+    .animal-squirrel{
+        position: absolute;
+        top: 220px;
+        left: 3645px; 
+        width: 120px;
+    }
+
+    .animal-bird{
+        position: absolute;
+        top: 3000px; 
+        left: 4100px; 
+        width: 150px;
+    }
+
+
+    .image-open {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .image-open img{
+        width: 100%;
+        height: 100%;
+    }
+
+    #open-btn{ /*시작 버튼*/
+        position: absolute;
+        top: 70%;
+        left: 35%;
+        width: 300px;
+        height: 150px;
+        transform:translate(50%, 50%);
+    }
+
+    .Q-container {
+        display: flex;
+        justify-content: center; 
+        position: fixed;
+        top: 0;
+        width: 100%; 
+        z-index: 100; 
+        display: none;
+        text-align: center;
+    }
+
+    .Q-container img {
+        margin: 25px 4px; 
+        width: 150px;
+        height: 150px;
+    }
+
+
+    #four{ /*마지막 단서 버튼*/
+        animation: blink 3.5s infinite;
+        float: right;
+        width: 130px;
+        height: 130px;
+        margin-right: 50px;
+        opacity: 1;
+        display: none;
+    }
+
+
+    
+    .fos {
+        display: flex;
+        justify-content:right; 
+        position: fixed;
+        top: 4%;
+        width: 100%; 
+        z-index: 100;
+        text-align: center;
+        
+        
+    }
+
+
+
+    .story-box{ /*스토리 시작*/
+        position: absolute;
+        top: 57%;
+        left: 50%;
+        transform:translate(-50%, -50%);
+    }
+
+
+    .story-box img{
+        position: relative;
+        width: 1000px;
+        display: block;
+    }
+
+
+    .story-box p{
+        position: absolute;
+        left: 50%;
+        top: 83%;
+        transform:translate(-50%, -50%);
+        text-align: center;
+        animation: blink 3.5s infinite; 
+        font-size: 16px;
+        font-family: 'BMDOHYEON', sans-serif;
+        color: rgb(255, 98, 0);
+        animation-delay: 3s;
+        opacity: 0;
+    }
+
+    
+
+
+    .Q-box{ /*퀘스트*/
+        position: absolute;
+        top: 57%;
+        left: 49%;
+        transform:translate(-50%, -50%);
+        display: none;
+    }
+
+
+
+    .Q-box img{
+        position: relative;
+        width: 1000px;
+       
+        
+    }
+
+
+    .Q-box p{
+        position: absolute;
+        left: 50%;
+        top: 82%;
+        transform:translate(-50%, -50%);
+        text-align: center;
+        animation: blink-animation 3.5s infinite;
+        font-size: 16px;
+        font-family: 'BMDOHYEON', sans-serif;
+        color: rgb(255, 98, 0);
+        
+       
+    }
+    .Q-box2{ /*퀘스트*/
+        position: absolute;
+        top: 51%;
+        left: 50%;
+        transform:translate(-50%, -50%);
+        display: none;
+    }
+
+
+
+    .Q-box2 img{
+        position: relative;
+        width: 1000px;
+       
+        
+    }
+
+
+    
+    
+    .talk-box{
+        background-color: #00000080;
+        color: white;
+        height:100vh;
+        left: 50%;
+        position: relative;
+        text-align: center;
+        top: 50%;
+        width: 100%;
+        display: none;
+        transform: translate(-50%, -50%);
+        
+    }
+
+
+
+    .talk-box img{
+        position: absolute;
+        width: 900px;
+        transform: translate(-50%, -85%);
+        top: 100%;
+        left: 50%;
+    }
+
+
+
+
+    .talk-box p{
+    position: absolute;
+    left: 0%; 
+    top: 80%; 
+    transform: translate(33%, -50%);
+    text-align: left;
+    font-size: 22px;
+    font-family: 'BMDOHYEON', sans-serif;
+    color: rgb(32, 31, 31);
+    width: 100%;
+    }
+
+
+
+    .talk-box2{
+        background-color: #00000080;
+        color: white;
+        height:100vh;
+        left: 0;
+        padding: 30px 0;
+        position: relative;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        display: none;
+        
+    }
+
+
+
+    .talk-box2 img{
+        position: absolute;
+        width: 900px;
+        transform: translate(-48%, 63%);
+    }
+
+
+
+    .talk-box2 p{
+    position: absolute;
+    left: 0; 
+    top: 73%;
+    transform: translate(35%, -50%);
+    text-align: left;
+    font-size: 22px;
+    font-family: 'BMDOHYEON', sans-serif;
+    color: rgb(32, 31, 31);
+    width: 100%;
+
+    }
+
+
+
+
+    @keyframes blink {
+
+        0% {
+            opacity: 1; 
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+
+    .motion-img{
+        animation: Rotate 2s ease-in-out forwards; 
+    } 
+
+
+
+
+    @keyframes Rotate {
+
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+       
+        50% {
+            transform: scale(0);
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: scale(1) rotate(360deg);
+            opacity: 1; 
+        }
+    }
+    
+
+    .last-box{ /*새끼 오리 위치*/
+        background-color: rgb(0, 131, 245);
+        position: absolute;
+        top: 1450px; 
+        left: 4500px;
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+
+    
+
+    .last-bg { /*새끼 오리 등장*/
+        background-color: #00000096;
+        color: white;
+        height:100vh;
+        left: 0;
+        padding: 65px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        display: none;
+
+    }
+    .last-bg2 { /*엄마 오리 편지*/
+        color: white;
+        height:100vh;
+        left: 0;
+        padding: 65px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        display: none;
+
+    }
+
+
+    #duck{
+            position: absolute;
+            top: 43%; 
+            left: 48%; 
+            width:800px;
+            height: 800px;
+            transform:translate(50%, 50%);
+            animation: jump 1.5s forwards; 
+            background-image: url(./img/새끼오리.png);
+            background-size: cover;
+            background-position: center;
+            animation-delay: 0s;
+            
+    }
+
+
+
+    @keyframes jump {
+    0% {
+        transform: translateY(0) translate(-50%, -50%);
+        opacity: 0;
+    }
+
+
+
+    50% {
+        transform: translateY(-150px) translate(-50%, -50%);
+        opacity: 30;
+    }
+
+    80% {
+        opacity: 80;
+    }
+
+    100%{transform: translateY(0) translate(-50%, -50%);
+        opacity: 100;}
+
+
+    }
+
+    
+
+    .last-bg p{
+            position: absolute;
+            left: 50%;
+            top: 72%;
+            transform:translate(-50%, -50%);
+            text-align: center;
+            animation: blink 3.5s infinite;  
+            font-size: 1.5rem;
+            font-family: 'BMDOHYEON', sans-serif;
+            color: rgb(255, 98, 0);
+            animation-delay: 3s;
+            opacity: 0;
+        
+        }
+
+
+    .last-bg p2{ 
+        position: absolute;
+        left: 50%;
+        top: 20%;
+        transform:translate(-50%, -50%);
+        animation: pp 1s forwards; 
+        text-align: center;
+        font-size: 4rem;
+        font-family: 'BMDOHYEON', sans-serif;
+        color: rgb(255, 255, 255);
+        animation-delay: 1.5s;
+        opacity: 0;
+    
+    }
+
+
+    @keyframes pp {
+    0% {
+        transform: translateY(0) translate(-50%, -30%);
+        opacity: 0;
+    }
+
+    100%{transform: translateY(0) translate(-50%, -50%);
+        opacity: 100;}
+
+    }
+    .letter-box{
+        left:35%;
+        position: absolute;
+        transform:translate(50%, 50%);
+        top: 22%;
+        
+    }
+    
+    .letter-box img {
+
+        width: 600px;
+        height: 600px;
+        animation: dropDown 1.2s 2.6s ease-out forwards, blink2 2s 6s infinite;
+        opacity: 0; 
+    }
+    .letter-p{
+        position: absolute;
+        left: 50%;
+        top: 28%;
+        transform:translate(-50%, -50%);
+        animation: pp2 0.6s forwards; 
+        text-align: center;
+        font-size: 4rem;
+        font-family: 'BMDOHYEON', sans-serif;
+        color: rgb(255, 255, 255);
+        animation-delay: 1.5s;
+        opacity: 0;
+        
+    }
+
+    @keyframes pp2 {
+    0% {
+        transform: translateY(0) translate(-50%, -50%);
+        opacity: 0;
+    }
+
+    50%{
+        transform: translateY(0) translate(-50%, -120%);
+        opacity: 30;
+    }
+
+    100%{transform: translateY(0) translate(-50%, -50%);
+        opacity: 100;}
+
+    }
+
+
+    #q5{
+        animation: pp3 1s forwards; 
+    }
+
+    @keyframes pp3 {
+    0% {
+        transform: translateY(0) translate(-50%, -50%);
+        opacity: 0;
+        
+    }
+
+
+
+    50% {
+        transform: translateY(-150px) translate(-50%, -50%);
+        opacity: 0;
+        
+    }
+
+    80% {
+        opacity: 70;
+    }
+
+    100%{transform: translateY(0) translate(-50%, -50%);
+        opacity: 100;
+        scale: 1;}
+
+
+    }
+
+    
+
+
+
+
+    @keyframes dropDown {
+
+        0% {
+        transform:  scale(0.2) rotate(0deg);
+        opacity: 1; 
+        }
+
+        30% {
+            transform:  scale(1.1) rotate(0deg);
+        }
+
+        60%{
+            transform:  scale(1) rotate(0deg);
+        }
+
+        75% {
+            transform:  scale(1) rotate(10deg);
+        }
+
+        85% {
+            transform:  scale(1) rotate(-10deg);
+        }
+        95% {
+            transform:  scale(1) rotate(10deg);
+        }
+
+        100% {
+            transform:  scale(1) rotate(0deg);
+            opacity: 1; 
+        }
+    }
+
+        @keyframes blink2 {
+
+        0% {
+            opacity: 1; 
+        }
+        50% {
+            opacity: 0.5; 
+        }
+        
+        100% {
+            opacity: 1; 
+        }
+    }
+
+
+    .Ending { 
+        background-color: #000000df;
+        color: white;
+        height:100vh;
+        left: 0;
+        padding: 65px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;; 
+        animation: opacity2 3.5s ease-in;
+        display: none;
+    }
+    @keyframes opacity2 {
+
+    0% {
+        opacity: 0; 
+    }
+
+    100% {
+        opacity: 1; 
+    }
+
+
+    }
+    .pp{
+        position: absolute;
+        left: 50%;
+        top: 32%;
+        transform:translate(-50%, -50%);
+        animation: pp2 0.6s forwards; 
+        text-align: center;
+        font-size: 6rem;
+        font-family: 'BMDOHYEON', sans-serif;
+        color: rgb(255, 255, 255);
+        animation-delay: 4s;
+        opacity: 0;
+    }
+
+    #End-btn{ /*종료 버튼*/
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 70px;
+        text-align: center;
+        animation: opacity2 0.6s forwards; 
+        transform:translate(-50%, -50%);
+        background-color: aliceblue;
+        border-radius: 100px;
+        animation-delay: 6s;
+        font-family: 'BMDOHYEON', sans-serif;
+        opacity: 0;
+    }
+    #End-btn p{
+
+        color: black;
+        font-family: 'BMDOHYEON', sans-serif;
+        font-size: 1.3rem;
+        padding-top: 23px;
+    }
+    #End-btn :hover{
+        color: rgb(98, 98, 98);
+    }
+
+    
+    .gide{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+
+    #st4,#st5,#st6{
+        display: none;
+    }
+
+    
+        
+    </style>
+
+   
+
+
+
+    </head>
+
+    <body>
+        
+
+    <audio style="display: none;" autoplay loop>
+        <source src="./img/the-old-forest-196807.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="image-open">
+            <img src="./img/표지.png">
+            <div id="open-btn"><img src="./img/시작버튼.png"></div>
+    </div>
+
+
+
+    <!----------------------     퀘스트 확인(상단)       ---------------------->
+    
+
+
+    <div class="Q-container">
+    <img src="./img/1번 미.png" id="one">
+    <img src="./img/2번 미.png" id="two">
+    <img src="./img/3번 미.png" id="three">
+    </div>
+    <div class="fos" >
+        <img src="./img/단서.png" id="four">
+        </div>
+    
+
+
+    <!----------------------     게임 맵       ---------------------->
+    <div class="image-bg">
+    
+        <img src="./img/게임 맵.png" id="bg" > 
+
+        <div class="animal-cat">
+            <img src="./img/고양이.png">
+        </div>
+
+        <div class="animal-squirrel">
+            <img src="./img/다람쥐.png">
+        </div>
+
+        <div class="animal-bird">
+            <img src="./img/홍학.png">
+        </div>
+
+
+        
+        <div class="last-box">
+        </div>
+
+
+
+        <div class="last-bg">
+        <p2>아기 오리들을 찾았어요!</p2>
+        <div id="duck" ></div>
+        <p>여기를 클릭하세요</p>
+        </div>
+
+
+        <div class="last-bg2 ">
+        <p class="letter-p">편지가 도착했어요!</p>
+        <div class="letter-box">
+            <img  src="./img/편지봉투.png">
+        </div> </div>
+
+
+
+        
+        <div class="story-box" id="st1">
+            <img class="motion-img" src="./img/스토리1.png">
+            <p>클릭!</p>
+        </div>
+        <div class="story-box" id="st2">
+            <img class="motion-img" src="">
+            
+        </div>
+        <div class="story-box" id="st3">
+            <img class="motion-img" src="">
+          
+        </div>
+    
+
+
+        <div class="story-box" id="st4">
+            <img src="./img/가이드1.png">
+            <video class="gide" width="450" height="250" loop autoplay muted>
+                <source src="./img/가이드1.mp4" type="video/mp4">
+            <p>클릭!</p>
+        </div>
+
+        <div class="story-box" id="st5">
+            <img  src="./img/가이드2.png">
+            <video class="gide" width="450" height="250" loop autoplay muted>
+                <source src="./img/가이드2.mp4" type="video/mp4">
+            <p>클릭!</p>
+        </div>
+
+        <div class="story-box" id="st6">
+            <img src="./img/가이드3.png">
+
+            <p>클릭!</p>
+        </div>
+
+
+    
+
+
+   
+
+<!----------------------     퀘스트 내용 확인 창       ---------------------->
+
+
+    <div class="Q-box" id="q1">
+        <img src="./img/퀘스트1.png">
+        <p>클릭!</p>
+    </div>
+    <div class="Q-box" id="q2">
+        <img src="./img/퀘스트2.png">
+        <p>클릭!</p>
+    </div>
+    <div class="Q-box" id="q3">
+        <img src="./img/퀘스트3.png">
+        <p>클릭!</p>
+    </div>
+
+    <div class="Q-box" id="q4">
+        <img class="motion-img" src="./img/행방.png">
+        <p></p>
+    </div>
+
+
+    <div class="Q-box2" id="q5">
+        <img src="./img/엄마오리 편지.png">
+        
+    </div>
+
+    <div class="Ending">
+        <p class="pp">게임 종료</p>
+        <div id="End-btn">
+            <p>돌아가기</p>
+        </div>
+    </div>
+
+    
+
+    <!----------------------     대화 창       ---------------------->
+
+    <div class="talk-box" id="t1">
+        <img src="./img/고양이 대화.png">
+        <p id="catTalk"></p>
+    </div>
+
+    <div class="talk-box" id="t2">
+        <img src="./img/다람쥐 대화.png">
+        <p id="squirrelTalk"></p>
+    </div>
+
+    <div class="talk-box2" id="t3">
+        <img src="./img/홍학 대화.png">
+        <p id="birdTalk"> </p>
+    </div>
+
+
+
+<!----------------------     게임 1 화면       ------------------------------->
+    <div id="wrap">
+        <div class="gamestart">
+            <div class="starttime">5</div>
+            
+            <div class="box25"></div>
+            <div class="startgide">같은 색상의 과일을 클릭하세요!</div>
+        </div>
+        <div class="game">
+        <div class="outer-container">
+            <div class="container3">
+                <div class="left-text"></div>
+                <div class="count"></div>
+            </div>
+            <div class="container2">
+                <div class="center-text">TIME</div>
+                <div class="time">10</div>
+            </div>
+        </div>
+    
+            <div id="game_canvas">
+                <div class="container">
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                <div class="box2"></div>
+                 </div>
+            </div>
+        </div>
+    
+    
+        <div class="gameover">
+            <div class="gameover_inner">
+            <div class="gameover_title">
+                GAME OVER
+            </div>
+            <div class="box"></div>
+            
+            <button class="reload b2">다시하기</button>
+            <button class="back b1">돌아가기</button>
+            </div>
+            
+        </div>
+    
+        <div class="gameclear">
+            <div class="gameover_inner">
+    
+                <div class="gameclear_title">
+                    GAME CLEAR
+                </div>
+        
+                <br>
+                <div class="box21"></div>
+                <button id="ss">돌아가기</button>
+                <br>
+                </div>
+        </div>
+    </div>
+
+
+<!------------------------------다람쥐 게임---------------------------------->
+
+    <div id="wrap2">
+        <div class="gamestart2">
+            <div class="starttime2">5</div>
+            <div class="box27"></div>
+            <div class="startgide3">도토리를 10번 클릭하세요!</div>
+        </div>
+    
+    
+        <div class="game2">
+            <div class="outer-container">
+            <div class="container4">
+                <div class="left-text">COUNT</div>
+                <div class="count2">0</div>
+            </div>
+            <div class="container2">
+                <div class="center-text">TIME</div>
+                <div class="time2">10</div>
+            </div>
+    
+            </div>
+            <div id="game_canvas2">
+                <div id="box5"></div>
+            </div>
+        </div>
+    
+    
+        <div class="gameover2">
+            <div class="gameover_inner2">
+    
+            <div class="gameover_title2">
+                GAME OVER
+            </div>
+    
+            <br>
+            <div class="box20"></div>
+            <button class="reloadd b2">다시하기</button>
+            <button class="backk b1">돌아가기</button>
+            <br>
+            </div>
+        </div>
+    
+        <div class="gameclear2">
+            <div class="gameover_inner2">
+    
+                <div class="gameclear_title2">
+                    GAME CLEAR
+                </div>
+        
+                <br>
+                <div class="box4"></div>
+                <button id="sss">돌아가기</button>
+                <br>
+                </div>
+        </div>
+    </div>
+    
+<!---------------------홍학 게임------------------------------------->
+<div id="wrap3">
+    <div class="gamestart3">
+        <div class="starttime3">5</div>
+        <div class="box26"></div>
+            <div class="startgide2">뛰어오르는 물고기를 클릭하세요!</div>
+    </div>
+
+
+    <div class="game3">
+        <div class="outer-container">
+        <div class="container3">
+            <div class="left-text">COUNT</div>
+            <div class="count3">0</div>
+        </div>
+        <div class="container2">
+            <div class="center-text">TIME</div>
+            <div class="time3">5</div>
+        </div></div>
+    
+        <div id="game_canvas3">
+            <div id="box7"></div>
+            <div id="box8"></div>
+            <div id="box9"></div>
+            <div id="box10"></div>
+            <div id="box11"></div>
+        </div>
+    </div>
+
+
+    <div class="gameover3">
+        <div class="gameover_inner3">
+
+        <div class="gameover_title3">
+            GAME OVER
+        </div>
+
+        <br>
+        <div class="box23"></div>
+        
+        
+        <button class="reloaddd b2">다시하기</button>
+        <button class="backkk b1">돌아가기</button>
+        <br>
+        </div>
+    </div>
+
+    <div class="gameclear3">
+        <div class="gameover_inner3">
+
+            <div class="gameclear_title3">
+                GAME CLEAR
+            </div>
+    
+            <br>
+            <div class="box6"></div>
+            <button id="ssss">돌아가기</button>
+            <br>
+            </div>
+    </div>
+</div>
+</div>
+
+
+
+    <script>
+
+
+        let game_open = document.querySelector('.image-open')
+        let open_btn = document.querySelector('#open-btn')
+        let game_map = document.querySelector('.image-bg')
+        let Q_container = document.querySelector('.Q-container')
+        let st1 = document.querySelector('#st1')
+        let st3 = document.querySelector('#st3')
+        let st4 = document.querySelector('#st4')
+        let st5 = document.querySelector('#st5')
+        let st6 = document.querySelector('#st6')
+        let Q_1 = document.querySelector('#one')
+        let Q_2 = document.querySelector('#two')
+        let Q_3 = document.querySelector('#three')
+        let Q_4 = document.querySelector('#four')
+        let Q_1_box = document.querySelector('#q1')
+        let Q_2_box = document.querySelector('#q2')
+        let Q_3_box = document.querySelector('#q3')
+        let Q_4_box = document.querySelector('#q4')
+        let Q_5_box = document.querySelector('#q5')
+        let cat_talkBox = document.querySelector('#t1')
+        let catTalk = document.querySelector('#catTalk')
+        let talk_box = document.querySelector('.talk-box')
+        let catImage = document.querySelector('.animal-cat img');
+        let squirrel_talkBox = document.querySelector('#t2')
+        let squirrelTalk = document.querySelector('#squirrelTalk')
+        let bird_talkBox = document.querySelector('#t3')
+        let birdTalk = document.querySelector('#birdTalk')
+        let squirrelImage = document.querySelector('.animal-squirrel img');
+        let birdImage = document.querySelector('.animal-bird img')
+        let catTalkTexts = ["뭐야..귀찮으니까 저리가..", "..아기 오리들을 찾고있다고?","누가 오리 얘기를 하는 걸 들은 것 같긴 한데..."," 그냥 알려줄 수는 없지.", "지금 이 숲에는 맛있는 베리가 열리는 시기라서 따왔는데,","귀찮아서 익은 건지 확인을 안 했어.","네가 대신 골라내주면 알려줄게.","명심해 '붉은 색'이 익은거야."];
+        let squirrelTalkTexts = ["안녕, 너도 같이 운동할래?", "뭐? 아기 오리들을 봤냐고?", "내가 근손실 올까봐 하루종일 여기서 운동만 하는데","오리 울음소리를 들은 적이 있는 같아.","그런데...","그 약한 손가락으로 아기오리들을 찾을 수 있겠어?","이 도토리를 부수면 더 자세히 알려줄게."];
+        let birdTalkTexts = ["다리가 너무 길어도 피곤하다니까~", "안녕? 너도 내 다리가 부럽니?", "아, 그게 아니라 아기 오리들을 찾고있다고?","잘 기억나지는 않지만..","이 시기에 어린 애들이 자주 가는 곳을 알긴하지.","여기 있는 물고기 5마리 잡아주면 알려줄게.","어휴, 다리가 너어어무 길어서 물고기 잡는 것도 힘들어~","그럼 힘내!"];
+        let wrap = document.querySelector('#wrap')
+        let cat_success = false; 
+        let squirrel_success = false; 
+        let bird_success = false; 
+       
+       
+
+        //첫 시작화면 전환
+        open_btn.addEventListener('click',() => {
+
+            game_map.style.display = 'block';
+            Q_container.style.display = 'block';
+            game_open.style.display = 'none';
+            
+            
+            
+            })
+
+           
+            st1.addEventListener('click',() => {
+
+                st1.style.display = 'none';
+                st4.style.display = 'block';
+
+            })
+            st4.addEventListener('click',() => {
+
+                st4.style.display = 'none';
+                st5.style.display = 'block';
+
+            })
+            st5.addEventListener('click',() => {
+
+                st5.style.display = 'none';
+                st6.style.display = 'block';
+
+            })
+            st6.addEventListener('click',() => {
+
+                st6.style.display = 'none';
+               
+
+            })
+
+            Q_1.addEventListener('click', () => {
+                Q_1_box.style.display = 'block';
+                Q_2_box.style.display = 'none';
+                Q_3_box.style.display = 'none';
+                Q_1.src = 'img/1번 클.png';
+                Q_2.src = 'img/2번 미.png';
+                Q_3.src = 'img/3번 미.png';
+            })
+
+            Q_2.addEventListener('click', () => {
+                Q_2_box.style.display = 'block';
+                Q_1_box.style.display = 'none';
+                Q_3_box.style.display = 'none';
+                Q_2.src = 'img/2번 클.png';
+                Q_1.src = 'img/1번 미.png';
+                Q_3.src = 'img/3번 미.png';
+            })
+
+            Q_3.addEventListener('click', () => {
+                Q_3_box.style.display = 'block';
+                Q_1_box.style.display = 'none';
+                Q_2_box.style.display = 'none';
+                Q_3.src = 'img/3번 클.png';
+                Q_1.src = 'img/1번 미.png';
+                Q_2.src = 'img/2번 미.png';
+            })
+
+            Q_1_box.addEventListener('click', () => {
+                Q_1_box.style.display = 'none';
+                Q_1.src = 'img/1번 미.png';
+            })
+
+            Q_2_box.addEventListener('click', () => {
+                Q_2_box.style.display = 'none';
+                Q_2.src = 'img/2번 미.png';
+            })
+
+            Q_3_box.addEventListener('click', () => {
+                Q_3_box.style.display = 'none';
+                Q_3.src = 'img/3번 미.png';
+            })
+
+
+//////////////////////////////////////////고양이////////////////////////////////////////////
+
+// 출처 : 챗GPT를 활용해서 작성하였습니다. (색상랜덤)
+
+
+            //고양이 클릭하면 대화창
+            catImage.addEventListener('click', (event) => {
+            if (cat_success === true) {
+                event.preventDefault();
+                return; 
+            }
+                Q_container.style.display = 'none';
+                cat_talkBox.style.display = 'block';
+            });
+
+
+
+            /*//고양이 대화 순서대로 진행 /////마지막에 숨기기
+            cat_talkBox.addEventListener('click', () => {
+                if (page < catTalkTexts.length - 1) {
+                    page += 1;
+                    catTalk.innerText = catTalkTexts[page];
+                } else {
+                    cat_talkBox.style.display = 'none'; // 마지막 텍스트 후 대화창 숨기기
+                }
+            });*/
+
+
+
+           
+
+        let page = 0;
+        catTalk.innerText = catTalkTexts[page];
+        
+
+        cat_talkBox.addEventListener('click', () => {
+           
+            if (page < catTalkTexts.length - 1) {
+                page += 1;
+                catTalk.innerText = catTalkTexts[page];
+                
+                
+            } 
+            else {
+            
+                cat_talkBox.style.display = 'none';
+                wrap.style.display = 'block';
+            
+            
+            // 고양이 게임
+            let gameclear = document.querySelector('.gameclear');
+            let gamestart = document.querySelector(".gamestart");
+            let starttime = document.querySelector('.starttime');
+            let time = document.querySelector('.time');
+            let game = document.querySelector('.game');
+            let gameover = document.querySelector('.gameover');
+            let reloadBtn = document.querySelector(".reload");
+            let backBtn = document.querySelector(".back")
+            let ssBtn = document.querySelector('#ss')
+            let boxes = document.querySelectorAll('.box2');
+            let countNum;
+            let countNum2;
+            let colors = ['#DD9414', '#C42430','#CFD32F'];
+            let greenBoxesLeft = 0;
+            
+
+            // 게임 시작 전 카운트
+            function countDown1() { 
+                let seconds = 4;
+
+                countNum = setInterval(() => {
+                    if (seconds > 0) {
+                        starttime.innerText = seconds;
+                        seconds--;
+                    } else {
+                        clearInterval(countNum);
+                        game.style.display = 'block';
+                        gamestart.style.display = 'none';
+                        countDown2();
+                    }
+                }, 1000);
+            }
+
+            function countDown2() { // 본 게임 카운트
+                let seconds = 9;
+
+                countNum2 = setInterval(() => {
+                    if (seconds > 0) {
+                        time.innerText = seconds;
+                        seconds--;
+                    } else {
+                        clearInterval(countNum2);
+                        time.innerText = '0';
+                        gameover.style.display = 'block';
+                    }
+                }, 1000);
+            }
+
+            countDown1()
+
+            function restart() {
+                clearInterval(countNum); 
+                clearInterval(countNum2); 
+                game.style.display = 'none'; 
+                gameover.style.display = 'none'; 
+                time.innerText = '10'; 
+                countDown1(); 
+                greenBoxesLeft = 0; 
+
+
+                boxes.forEach(box => {
+                    let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    box.style.backgroundColor = randomColor; 
+                    box.style.visibility = 'visible'; 
+                    if (randomColor === '#C42430') {
+                        greenBoxesLeft++; 
+                    }
+                });
+            }
+
+            reloadBtn.addEventListener('click', restart);
+
+            backBtn.addEventListener('click',  () => {
+                gameover.style.display = 'none';
+                wrap.style.display = 'none';
+                Q_container.style.display = 'block';
+            })
+
+          
+            
+
+            ssBtn.addEventListener('click',  () => {
+                gameclear.style.display = 'none';
+                wrap.style.display = 'none';
+                Q_container.style.display = 'block';
+                cat_success = true;
+                Q_1.src = 'img/성공.png';
+                clearCount++;
+                checkClearCount();
+            })
+            
+
+            // 색 랜덤 지정
+            boxes.forEach(box => {
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                box.style.backgroundColor = randomColor;
+                if (randomColor === '#C42430') {
+                    greenBoxesLeft++; 
+                }
+            });
+
+            
+            boxes.forEach(box => {
+                box.addEventListener('click', () => {
+                    if (box.style.backgroundColor === 'rgb(196, 36, 48)') { 
+                        box.style.visibility = 'hidden'; 
+                        greenBoxesLeft--;
+
+                        if (greenBoxesLeft === 0) {
+                            gameclear.style.display = 'block';
+                            clearInterval(countNum2); 
+                        }
+                    } else {
+                        alert('"붉은색"을 선택하세요');
+                    }
+                });
+            });
+        }
+    });
+
+    
+
+
+
+
+/////////////////////////////홍학/////////////////////////////////
+
+    
+
+        //새 대화창 클릭할때마다 텍스트 변경
+        birdImage.addEventListener('click',(event) => {
+
+            if (bird_success === true) {
+            event.preventDefault();
+            return; 
+        }
+
+            Q_container.style.display = 'none';
+            bird_talkBox.style.display = 'block';
+
+        })
+
+        let page3 = 0;
+        birdTalk.innerText = birdTalkTexts[page3];
+
+
+        //새 클릭하면 대화창
+    
+
+            bird_talkBox.addEventListener('click', () => {
+           
+           if (page3 < birdTalkTexts.length - 1) {
+               page3 += 1;
+               birdTalk.innerText = birdTalkTexts[page3];
+               
+               
+           } 
+           else {
+           
+             bird_talkBox.style.display = 'none';
+             wrap3.style.display = 'block';
+
+                let gamestart3 = document.querySelector(".gamestart3")
+                let starttime3 = document.querySelector('.starttime3');
+                let time3 = document.querySelector('.time3');
+                let game3 = document.querySelector('.game3')
+                let gameover3 = document.querySelector('.gameover3');
+                let reloadBtn3 = document.querySelector(".reloaddd")
+                let backkk = document.querySelector('.backkk')
+                let box7 = document.querySelector('#box7')
+                let count3 = document.querySelector('.count3')
+                let gameclear3 = document.querySelector('.gameclear3')
+                let countNum5;
+                let countNum6;
+                let score3 = 0;
+                let ssssBtn = document.querySelector('#ssss')
+
+                function countDown4() {
+                let seconds = 5;
+
+                countNum5 = setInterval(() => {
+
+            if(seconds > 0) {
+                starttime3.innerText = seconds;
+                seconds--;
+
+            }else {
+                clearInterval(countNum5);
+                game3.style.display = 'block';
+                gamestart3.style.display = 'none';
+                countDown5();
+                }
+                }, 1000)
+                }
+
+                
+
+            function countDown5() {
+            let seconds = 9;
+
+            countNum6 = setInterval(() => {
+                if(seconds > 0) {
+                    time3.innerText = seconds;
+                    seconds--;
+                }else {
+                    clearInterval(countNum6);
+                    time3.innerText = '0'
+                    gameover3.style.display = 'block';
+                    }
+                    }, 1000)
+                    }
+
+                    countDown4();
+
+
+
+                    let boxes2 = document.querySelectorAll('#box7, #box8, #box9, #box10, #box11');
+
+                   
+
+                    boxes2.forEach(box => {
+                        box.addEventListener('click', () => {
+                            score3 += 1;
+                            count3.textContent = score3;
+                            checkScore();
+                        });
+                    });
+
+                    function checkScore() {
+                        if (score3 === 5) {
+                            gameclear3.style.display = 'block';
+                            clearInterval(countNum6); 
+                        }
+                    }
+
+
+
+
+
+                function restart3() {
+                    clearInterval(countNum5); 
+                    clearInterval(countNum6); 
+                    game3.style.display = 'none'; 
+                    gameover3.style.display = 'none'; 
+                    time3.innerText = '5'; 
+                    score3 = 0;
+                    count3.textContent = score3;
+                    countDown4(); 
+                }
+                
+                ssssBtn.addEventListener('click',  () => {
+                    gameclear3.style.display = 'none';
+                    wrap3.style.display = 'none';
+                    Q_container.style.display = 'block';
+                    bird_success = true;
+                    Q_3.src = 'img/성공.png';
+                    clearCount++;
+                    checkClearCount();
+                })  
+
+                reloadBtn3.addEventListener('click', restart3);
+
+                backkk.addEventListener('click',  () => {
+                    gameover3.style.display = 'none';
+                    wrap3.style.display = 'none';
+                    Q_container.style.display = 'block';
+                })
+
+
+
+        }})
+        
+
+
+
+//////////////////////////////////다람쥐//////////////////////////////////////
+
+
+        
+
+        //다람쥐 클릭하면 대화창
+        squirrelImage.addEventListener('click', (event) => {
+        if (squirrel_success === true) {
+            event.preventDefault();
+            return; // 클릭 제거
+        }
+            Q_container.style.display = 'none';
+            squirrel_talkBox.style.display = 'block';
+        })
+
+
+        //다람쥐 대화 시작
+        let page2 = 0;
+        squirrelTalk.innerText = squirrelTalkTexts[page2];
+        
+
+        squirrel_talkBox.addEventListener('click', () => {
+           
+            if (page2 < squirrelTalkTexts.length - 1) {
+                page2 += 1;
+                squirrelTalk.innerText = squirrelTalkTexts[page2];
+                
+                
+            } 
+            else {
+            
+                squirrel_talkBox.style.display = 'none';
+                wrap2.style.display = 'block';
+            
+            
+                let gamestart2 = document.querySelector(".gamestart2")
+                let starttime2 = document.querySelector('.starttime2');
+                let time2 = document.querySelector('.time2');
+                let game2 = document.querySelector('.game2')
+                let gameover2 = document.querySelector('.gameover2');
+                let reloadBtn2 = document.querySelector(".reloadd")
+                let backk = document.querySelector('.backk')
+                let box5 = document.querySelector('#box5')
+                let count2 = document.querySelector('.count2')
+                let gameclear2 = document.querySelector('.gameclear2')
+                let countNum3;
+                let countNum4;
+                let score2 = 0;
+                let sssBtn = document.querySelector('#sss')
+
+                function countDown3() {
+                let seconds = 4;
+
+                countNum3 = setInterval(() => {
+
+            if(seconds > 0) {
+                starttime2.innerText = seconds;
+                seconds--;
+
+            }else {
+                clearInterval(countNum3);
+                game2.style.display = 'block';
+                gamestart2.style.display = 'none';
+                countDown4();
+                }
+                }, 1000)
+                }
+
+                
+
+            function countDown4() {
+            let seconds = 4;
+
+            countNum4 = setInterval(() => {
+                if(seconds > 0) {
+                    time2.innerText = seconds;
+                    seconds--;
+                }else {
+                    clearInterval(countNum4);
+                    time2.innerText = '0'
+                    gameover2.style.display = 'block';
+                    }
+                    }, 1000)
+                    }
+
+                    countDown3();
+
+
+
+                box5.addEventListener('click', () => {
+
+                    score2 += 1;
+                    count2.textContent = score2;
+
+                    if (score2 === 10) {
+                        gameclear2.style.display = 'block';
+                        clearInterval(countNum4); 
+                        box5.src = './img/도토리2';
+                    }
+                    });
+
+
+
+
+
+                function restart2() {
+                    clearInterval(countNum3); 
+                    clearInterval(countNum4); 
+                    game2.style.display = 'none'; 
+                    gameover2.style.display = 'none'; 
+                    time2.innerText = '9'; 
+                    score2 = 0;
+                    countDown3(); // 게임 다시 시작
+                }
+                
+                sssBtn.addEventListener('click',  () => {
+                    gameclear2.style.display = 'none';
+                    wrap2.style.display = 'none';
+                    Q_container.style.display = 'block';
+                    squirrel_success = true;
+                    Q_2.src = 'img/성공.png';
+                    clearCount++;
+                    checkClearCount();
+                })  
+
+                reloadBtn2.addEventListener('click', restart2);
+
+                backk.addEventListener('click',  () => {
+                    gameover2.style.display = 'none';
+                    wrap2.style.display = 'none';
+                    Q_container.style.display = 'block';
+                })
+
+                            
+                
+                }
+                })
+
+
+
+
+
+////////////////////////////////////게임 완료 후///////////////////////////////////
+
+
+    let clearCount = 0; 
+    let clickCount = 0;
+    let duck = document.querySelector('#duck');
+    let last_bg = document.querySelector('.last-bg');
+    let last_p = document.querySelector('.last-bg p');
+    let letter_box = document.querySelector('.letter-box');
+    let last_bg2 = document.querySelector('.last-bg2')
+    let Ending = document.querySelector('.Ending')
+    let End_btn = document.querySelector('#End-btn')
+    let lastbox = document.querySelector('.last-box');
+
+
+
+lastbox.addEventListener('click',  () => {
+    clickCount++;
+
+    if (clickCount === 5) {
+            last_bg.style.display = 'block';
+            Q_container.style.display = 'none';
+            
+        }
+});
+
+    function checkClearCount() {
+    if (clearCount === 3) {
+        Q_4.style.display = 'block';
+        Q_4_box.style.display = 'block';
+    }
+    }
+
+
+
+    Q_4.addEventListener('click',  () => {
+        Q_4_box.style.display = 'block';
+        Q_4.style.animation = 'none';
+        })  
+
+     Q_4_box.addEventListener('click',  () => {
+        Q_4_box.style.display = 'none';
+        Q_4.style.animation = 'none';
+        })      
+       
+
+    
+    last_p.addEventListener('click',  () => {  //오리 발견 후 클릭
+
+        Q_container.style.display = 'none';
+        last_bg.style.display = 'none';
+        last_bg2.style.display = 'block';
+    })
+     
+    letter_box.addEventListener('click',  () => { //편지 클릭
+        Q_4_box.style.display = 'none';
+        Q_4.style.animation = 'none';
+        Q_5_box.style.display = 'block';
+        last_bg2.style.display = 'none';
+        
+        })   
+
+
+        Q_5_box.addEventListener('click',  () => { //편지지 클릭
+            letter_box.style.display = 'none';
+            Ending.style.display = 'block';
+
+        })
+
+        End_btn.addEventListener('click',  () => { //편지지 클릭
+            location.reload(); 
+
+        })
+       
+//////////////////////////////////맵 이동//////////////////////////////////////
+
+// 출처 : 챗GPT를 활용해서 작성하였습니다.
+
+document.addEventListener('DOMContentLoaded', function () {
+    let catImage = document.querySelector('.animal-cat img'); 
+    let squirrelImage = document.querySelector('.animal-squirrel img'); 
+    let birdImage = document.querySelector('.animal-bird img');
+    let mapImage = document.getElementById('bg'); 
+    let container = document.querySelector('.image-bg'); 
+   
+
+    // 초기 맵 이미지의 위치
+    let initialMapX = mapImage.offsetLeft;
+    let initialMapY = mapImage.offsetTop;
+
+    // 맵 이미지를 마우스로 클릭하여 드래그할 때 실행되는 함수
+    mapImage.addEventListener('mousedown', (event) => {
+        let startX = event.clientX - mapImage.offsetLeft; // 클릭 지점의 X 좌표 저장
+        let startY = event.clientY - mapImage.offsetTop; // 클릭 지점의 Y 좌표 저장
+
+        document.addEventListener('mousemove', moveMap);
+
+        // 맵 이미지를 이동시키는 함수
+        function moveMap(event) {
+            let x = event.clientX - startX; // 새로운 X 위치 계산
+            let y = event.clientY - startY; // 새로운 Y 위치 계산
+
+            // 맵 이미지가 컨테이너를 벗어나지 않도록 제한
+            const maxX = container.clientWidth - mapImage.clientWidth;
+            const maxY = container.clientHeight - mapImage.clientHeight;
+
+            if (x > 0) x = 0;
+            if (y > 0) y = 0;
+            if (x < maxX) x = maxX;
+            if (y < maxY) y = maxY;
+
+            mapImage.style.left = `${x}px`; // 맵 이미지의 새로운 X 위치 설정
+            mapImage.style.top = `${y}px`; // 맵 이미지의 새로운 Y 위치 설정
+
+            // 맵 이미지와 함께 다른 요소들도 이동
+            let offsetX = initialMapX - x;
+            let offsetY = initialMapY - y;
+            catImage.style.left = `${catImage.offsetLeft - offsetX}px`;
+            catImage.style.top = `${catImage.offsetTop - offsetY}px`;
+            squirrelImage.style.left = `${squirrelImage.offsetLeft - offsetX}px`;
+            squirrelImage.style.top = `${squirrelImage.offsetTop - offsetY}px`;
+            birdImage.style.left = `${birdImage.offsetLeft - offsetX}px`;
+            birdImage.style.top = `${birdImage.offsetTop - offsetY}px`;
+            lastbox.style.left = `${lastbox.offsetLeft - offsetX}px`;
+            lastbox.style.top = `${lastbox.offsetTop - offsetY}px`;
+
+            initialMapX = x;
+            initialMapY = y;
+        }
+
+        // 마우스를 뗄 때 실행되는 함수
+        document.addEventListener('mouseup', () => {
+            document.removeEventListener('mousemove', moveMap);
+        });
+
+        event.preventDefault(); // 기본 드래그 동작 방지
+    });
+});
+
+
+    </script>
+
+    
+   
+
+
+
+
+</body>
+</html>
